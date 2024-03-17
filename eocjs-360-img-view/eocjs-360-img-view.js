@@ -1,6 +1,6 @@
 /*!
  * eocjs360ImgView v0.1
- * Copyright (c) 2023 Dieter Schmitt
+ * Copyright (c) 2024 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
 
