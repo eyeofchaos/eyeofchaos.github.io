@@ -71,7 +71,7 @@
       function start() {
 
         let updateSource = function(src) {
-          return src + (src.indexOf('?') > -1 ? '&' : '?') + 'eocjs_ts=' + Date.now();
+          return src + (src.indexOf('?') > -1 ? '&' : '?') + 'eocjs_ts=' + Math.floor(Date.now() / 1000);
         };
 
         if (settings.type === 'static') {
