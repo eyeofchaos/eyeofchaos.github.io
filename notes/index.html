@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Various insights on IT">
+<title>Notes</title>
+<link rel="icon" href="/images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid justify-content-lg-center">
+      <a class="navbar-brand d-flex align-items-center justify-content-center" href="/">
+        <div class="position-relative" style="width: 30px; height: 30px;">
+          <div class="position-absolute start-0 top-0 w-100 h-100 rounded-circle" style="background-color: var(--bs-gray-300);"></div>
+          <div class="position-absolute start-50 top-50 translate-middle rounded-circle overflow-hidden" style="width: calc(100% - 0.25rem); height: calc(100% - 0.25rem);">
+            <picture>
+              <source srcset="/images/profile.avif" type="image/avif">
+              <source srcset="/images/profile.jpg" type="image/jpeg">
+              <img src="/images/profile.jpg" class="w-100 h-100 d-block" alt="Nightside">
+            </picture>
+          </div>
+        </div>
+        <div class="ms-2">Nightside</div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#eocjs-nav-alt" aria-controls="eocjs-nav-alt" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse flex-lg-grow-0" id="eocjs-nav-alt">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/recipes/porree-roellchen/">Porree-Röllchen</a>
+          <a class="nav-link" href="/svg-filter/">SVG Filter</a>
+          <a class="nav-link active" href="/notes/" aria-current="page">Notes</a>
+          <a class="nav-link" href="/javascript-obfuscator/">JavaScript Obfuscator</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+
+          <h1 class="mb-5 text-center">Notes</h1>
+
+          <div class="table-responsive">
+            <table class="table mx-auto text-break" style="min-width: 640px;">
+              <thead>
+                <tr>
+                  <th style="width: 15%; min-width: 100px;">Area</th>
+                  <th style="width: 30%; min-width: 100px;">Topic</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">General</td>
+                  <td style="width: 30%; min-width: 100px;">Backup with 7z CLI</td>
+                  <td>7za a -p -mhe -mx3 -v128m files-20250901.7z files</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">VS Code</td>
+                  <td style="width: 30%; min-width: 100px;">Open SVG as code</td>
+                  <td>"workbench.editorAssociations": { "*.svg": "default" }</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">AVIF</td>
+                  <td style="width: 30%; min-width: 100px;">Encode without color shifts</td>
+                  <td>avifenc -q 75 --cicp 1/13/1 input.jpg output.avif</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">WebP</td>
+                  <td style="width: 30%; min-width: 100px;">Encode</td>
+                  <td>cwebp -q 85 input.png -o output.webp</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Terser</td>
+                  <td style="width: 30%; min-width: 100px;">Minify</td>
+                  <td>terser input.js --compress --mangle --format quote_style=1 --output output.js</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Linux</td>
+                  <td style="width: 30%; min-width: 100px;">Install SDDM Theme Sugar Candy</td>
+                  <td>
+                    <ol class="mb-0">
+                      <li>Unzip theme to /usr/share/sddm/themes</li>
+                      <li>Open /usr/share/sddm/themes/sugar-candy/theme.conf and change DateFormat, HeaderText and ScreenWidth/ScreenHeight</li>
+                      <li>Open /etc/sddm.conf and insert:<br>[Theme]<br>Current=sugar-candy</li>
+                    </ol>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Windows</td>
+                  <td style="width: 30%; min-width: 100px;">Lock screen wallpapers</td>
+                  <td><span class="text-nowrap">C:\Users\&lt;username&gt;\</span>AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Windows</td>
+                  <td style="width: 30%; min-width: 100px;">Current desktop wallpaper</td>
+                  <td><span class="text-nowrap">C:\Users\&lt;username&gt;\</span>Appdata\Roaming\Microsoft\Windows\Themes\</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Become root</td>
+                  <td>sudo su -</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Create image</td>
+                  <td>dd if=/dev/sda bs=4M | gzip -c | dd of=/path/to/image.gz bs=4M</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Test image</td>
+                  <td>cat /path/to/image.gz | gzip -d | cmp - /dev/sda</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Write image back</td>
+                  <td>cat /path/to/image.gz | gzip -d | dd of=/dev/sda bs=4M</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Overwrite with zero</td>
+                  <td>dd if=/dev/zero of=/dev/sda bs=4M</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Format with FAT32</td>
+                  <td>mkfs.vfat -F 32 -n [NAME] -v /dev/sdc1</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Rsync</td>
+                  <td>rsync -avh --delete /path/from/ /path/to/</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Rsync (DRY RUN)</td>
+                  <td>rsync -avhn --delete /path/from/ /path/to/</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">Bash</td>
+                  <td style="width: 30%; min-width: 100px;">Count files</td>
+                  <td>find . -type f -name *.jpg | wc -l</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">PowerShell</td>
+                  <td style="width: 30%; min-width: 100px;">Concatenate files</td>
+                  <td>type file1.csv file2.csv > concat.csv</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">FLAC to ALAC (with cover)</td>
+                  <td>ffmpeg -i input.flac -map 0:0 -c:a alac -map 0:1 -c:v copy output.m4a</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">ALAC to MP3 (without cover)</td>
+                  <td>ffmpeg -i input.m4a -c:a libmp3lame -b:a 256k -vn -id3v2_version 3 -write_id3v1 1 output.mp3</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">ALAC to MP3 (with cover)</td>
+                  <td>ffmpeg -i input.m4a -map 0:0 -c:a libmp3lame -b:a 256k -id3v2_version 3 -write_id3v1 1 -map 0:1 -c:v mjpeg -q:v 5 -profile:v 0 -vf scale=300:300 -metadata:s:v comment="Cover (front)" output.mp3</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">MPEG2 to MP4 / H.264 and AC3</td>
+                  <td>ffmpeg -i input.mpg -c:v libx264 -crf 18 -preset medium -c:a copy output.mp4</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">MPEG2 to MP4 / H.264 and AAC</td>
+                  <td>ffmpeg -i input.mpg -c:v libx264 -crf 18 -preset medium -c:a aac -b:a 256k -ac 2 output.mp4</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">MPEG2 to WebM / VP8 and Ogg Vorbis</td>
+                  <td>ffmpeg -i input.mpg -c:v libvpx -b:v 3000k -c:a libvorbis -q:a 8 -ac 2 output.webm</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">FFmpeg</td>
+                  <td style="width: 30%; min-width: 100px;">Add second audio channel</td>
+                  <td>ffmpeg -i input.mp4 -map 0:v -c:v copy -map 0:a -c:a:0 copy -map 0:a -c:a:1 aac -b:a:1 256k -ac:a:1 2 -map 0:d output.mp4</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">ImageMagick</td>
+                  <td style="width: 30%; min-width: 100px;">PNG to JPEG (single file)</td>
+                  <td>convert -quality 90 image.png image.jpg</td>
+                </tr>
+                <tr>
+                  <td style="width: 15%; min-width: 100px;">ImageMagick</td>
+                  <td style="width: 30%; min-width: 100px;">PNG to JPEG (multiple files)</td>
+                  <td>mogrify -quality 90 -format jpg *.png</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/js/bootstrap-5.3.8/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
