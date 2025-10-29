@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Info</title>
+<link rel="icon" href="/images/favicon.png" type="image/png">
+<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">
+</head>
+<body>
+
+<main>
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+
+          <h1 class="mb-5 text-center">Info</h1>
+
+          <table class="table mx-auto text-break" style="max-width: 960px;">
+            <thead>
+              <tr>
+                <th style="width: 40%; min-width: 100px;">Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="width: 40%; min-width: 100px;">Time</td>
+                <td><eocjs-time></eocjs-time></td>
+              </tr>
+              <tr>
+                <td style="width: 40%; min-width: 100px;">User agent</td>
+                <td><eocjs-user-agent></eocjs-user-agent></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/js/bootstrap-5.3.8/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+
+  class EocjsTime extends HTMLElement {
+
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      const obj = new Date();
+      shadowRoot.innerHTML = obj.toLocaleString();
+    }
+
+  }
+
+  customElements.define('eocjs-time', EocjsTime);
+
+  class EocjsUserAgent extends HTMLElement {
+
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.innerHTML = navigator.userAgent;
+    }
+
+  }
+
+  customElements.define('eocjs-user-agent', EocjsUserAgent);
+
+})();
+</script>
+
+</body>
+</html>
