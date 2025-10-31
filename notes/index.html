@@ -76,17 +76,17 @@
                 <tr>
                   <td style="width: 15%; min-width: 100px;">Bash</td>
                   <td style="width: 30%; min-width: 100px;">Create image</td>
-                  <td>dd if=/dev/sda bs=4M | gzip -c | dd of=/path/to/image.gz bs=4M</td>
+                  <td>dd if=/dev/sda of=/path/to/image bs=4M</td>
                 </tr>
                 <tr>
                   <td style="width: 15%; min-width: 100px;">Bash</td>
                   <td style="width: 30%; min-width: 100px;">Test image</td>
-                  <td>cat /path/to/image.gz | gzip -d | cmp - /dev/sda</td>
+                  <td>cat /path/to/image | cmp - /dev/sda</td>
                 </tr>
                 <tr>
                   <td style="width: 15%; min-width: 100px;">Bash</td>
                   <td style="width: 30%; min-width: 100px;">Write image back</td>
-                  <td>cat /path/to/image.gz | gzip -d | dd of=/dev/sda bs=4M</td>
+                  <td>dd if=/path/to/image of=/dev/sda bs=4M</td>
                 </tr>
                 <tr>
                   <td style="width: 15%; min-width: 100px;">Bash</td>
