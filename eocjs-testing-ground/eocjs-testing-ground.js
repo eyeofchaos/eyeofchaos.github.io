@@ -40,6 +40,7 @@
       this.settings   = extend({}, this.defaults, this.options);
       this.elements   = {
         select:  document.querySelector('#select'),
+        example: document.querySelector('#example'),
         run:     document.querySelector('#run'),
         curtain: document.querySelector('#curtain'),
         overlay: document.querySelectorAll('#html-overlay, #css-overlay, #js-overlay')
@@ -181,10 +182,33 @@
 
     }
 
+    _loadExample() {
+
+      this.editorHTML.setValue(`<h1>TEST</h1>`);
+      this.editorCSS.setValue(`body {
+        background: yellowgreen;
+      }`);
+      this.editorJS(`
+        (() => {
+          console.log('OK, GO!');
+          if (typeof $ === 'function') {
+            $('h1').html('HELLO WORLD!');
+          }
+        })();
+      `);
+
+    }
+
     _bind() {
+
+      if (this.elements.example) {
+        this.elements.run.addEventListener('click', e => this._loadExample());
+      }
+
       if (this.elements.run) {
         this.elements.run.addEventListener('click', e => this._load(this._start(e)));
       }
+
     }
 
   }
