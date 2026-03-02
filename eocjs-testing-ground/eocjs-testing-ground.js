@@ -184,9 +184,9 @@
 
     _example() {
 
-      this.editorHTML.setValue(`<h1>TEST</h1>`);
-      this.editorCSS.setValue(`body {\n  background: yellowgreen;\n}`);
-      this.editorJS.setValue(`(() => {\n  console.log('OK, GO!');\n  $('h1').html('HELLO WORLD!');\n})();`);
+      this.editorHTML.session.setValue(`<h1>TEST</h1>`);
+      this.editorCSS.session.setValue(`body {\n  background: yellowgreen;\n}`);
+      this.editorJS.session.setValue(`(() => {\n  console.log('OK, GO!');\n  $('h1').html('HELLO WORLD!');\n})();`);
 
     }
 
