@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="de" data-bs-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eocjsTestingGround</title>
+<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">
+<link rel="stylesheet" href="/css/ace-1.43.6/ace.css">
+<style>
+#output iframe { width: 100%; height: 100%; }
+.fade-out { opacity: 1; animation: fade-out 150ms 0ms 1 forwards; }
+@keyframes fade-out { 0% { opacity: 1; } 100% { opacity: 0; } }
+</style>
+</head>
+<body>
+
+<main class="position-fixed left-0 top-0 w-100 h-100">
+
+  <!-- Navigation -->
+  <nav class="position-fixed container-fluid border-bottom" style="left: 0; top: 0; width: 100%; height: 60px;">
+    <div id="settings" class="h-100 row flex-nowrap">
+      <div class="col-4">
+        <div class="d-flex align-items-center justify-content-start flex-nowrap h-100 input-group w-auto overflow-hidden">
+          <div class="col-form-label px-4 rounded-start bg-primary text-white text-truncate">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="me-2" style="height: 1em; vertical-align: -0.125em;"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M45.9 42.1c3-6.1 9.6-9.6 16.3-8.7L307 64 551.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L426.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L307 64 223.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L24.1 170.6C4.8 165.1-4.7 143.4 4.2 125.5L45.9 42.1zM308.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L563 211.6v167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C66 419.7 51 400.5 51 378.5v-167L178.6 248c27.8 8 57.6-3.8 72.5-28.6L305.9 128h2.2z" fill="currentColor"/></svg><span>Packets</span>
+          </div>
+          <select id="select" class="form-select w-auto flex-grow-0"
+            data-eocjs-packets='{
+              "jquery@3.5.1":    {  "js": [ "/js/jquery-3.5.1.min.js" ] },
+              "jquery@3.7.1":    {  "js": [ "/js/jquery-3.7.1.min.js" ] },
+              "jquery@4.0.0":    {  "js": [ "/js/jquery-4.0.0.min.js" ] },
+              "bootstrap@4.5.3": { "css": [ "/css/bootstrap-4.5.3/bootstrap.min.css" ], "js": [ "/js/bootstrap-4.5.3/bootstrap.bundle.min.js" ] },
+              "bootstrap@5.3.8": { "css": [ "/css/bootstrap-5.3.8/bootstrap.min.css" ], "js": [ "/js/bootstrap-5.3.8/bootstrap.bundle.min.js" ] }
+            }'
+          >
+            <option value="">None</option>
+            <option value="jquery@3.5.1|bootstrap@4.5.3">Legacy (jQuery 3.5.1 + Bootstrap 4.5.3)</option>
+            <option value="jquery@3.7.1|bootstrap@5.3.8" selected>Standard (jQuery 3.7.1 + Bootstrap 5.3.8)</option>
+            <option value="jquery@4.0.0|bootstrap@5.3.8">Next (jQuery 4.0.0 + Bootstrap 5.3.8)</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex align-items-center justify-content-center h-100 overflow-hidden">
+          <h1 class="col-form-label px-4 rounded bg-danger text-white text-truncate">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="me-2" style="height: 1em; vertical-align: -0.125em;"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2v82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9V380.8c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" fill="currentColor"/></svg><span>eocjsTestingGround <small>0.1.3</small></span>
+          </h1>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex align-items-center justify-content-end h-100 overflow-hidden">
+          <button type="button" id="run" class="btn btn-warning w-100 text-truncate" style="max-width: 160px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="me-2" style="height: 1em; vertical-align: -0.125em;"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M370.3 160H320c-17.7 0-32 14.3-32 32s14.3 32 32 32H448c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L398.4 97.6c-87.5-87.5-229.3-87.5-316.8 0s-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3s163.8-62.5 226.3 0L370.3 160z" fill="currentColor"/></svg><span>Run</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HTML -->
+  <section class="position-fixed" style="left: 0; top: 60px; width: 50%; height: calc((100% - 60px) * 0.4);">
+    <div id="html" class="w-100 h-100" style="font-size: 16px;"></div>
+    <div id="html-overlay" class="position-absolute start-0 top-0 w-100 h-100 bg-dark" style="z-index: 10;"></div>
+    <div class="position-absolute end-0 top-0 me-2 mt-2 px-2 py-0 bg-primary text-white small rounded" style="z-index: 20;">HTML</div>
+  </section>
+
+  <!-- CSS -->
+  <section class="position-fixed border-start" style="left: 50%; top: 60px; width: 50%; height: calc((100% - 60px) * 0.4);">
+    <div id="css" class="w-100 h-100" style="font-size: 16px;"></div>
+    <div id="css-overlay" class="position-absolute start-0 top-0 w-100 h-100 bg-dark" style="z-index: 10;"></div>
+    <div class="position-absolute end-0 top-0 me-2 mt-2 px-2 py-0 bg-primary text-white small rounded" style="z-index: 20;">CSS</div>
+  </section>
+
+  <!-- JS -->
+  <section class="position-fixed border-top" style="left: 0; top: calc(60px + ((100% - 60px) * 0.4)); width: 50%; height: calc((100% - 60px) * 0.6);">
+    <div id="js" class="w-100 h-100" style="font-size: 16px;"></div>
+    <div id="js-overlay" class="position-absolute start-0 top-0 w-100 h-100 bg-dark" style="z-index: 10;"></div>
+    <div class="position-absolute end-0 top-0 me-2 mt-2 px-2 py-0 bg-primary text-white small rounded" style="z-index: 20;">JS</div>
+  </section>
+
+  <!-- OUTPUT -->
+  <section class="position-fixed" style="left: 50%; top: calc(60px + ((100% - 60px) * 0.4)); width: 50%; height: calc((100% - 60px) * 0.6);">
+    <div id="output" class="w-100 h-100 p-3 bg-white"></div>
+    <div id="curtain" class="position-absolute start-0 top-0 w-100 h-100 bg-white" style="z-index: 10;"></div>
+    <div class="position-absolute end-0 top-0 me-2 mt-2 px-2 py-0 bg-primary text-white small rounded" style="z-index: 20;">OUTPUT</div>
+  </section>
+
+</main>
+
+<script src="/js/ace-1.43.6/ace.js"></script> 
+<script src="/eocjs-testing-ground/eocjs-testing-ground.js"></script>
+
+</body>
+</html>
