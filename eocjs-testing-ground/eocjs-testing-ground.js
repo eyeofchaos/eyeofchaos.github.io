@@ -184,9 +184,12 @@
 
     _example() {
 
-      this.editorHTML.setValue(`<h1>TEST</h1>`, -1);
-      this.editorCSS.setValue(`body {\n  background: yellowgreen;\n}`, -1);
-      this.editorJS.setValue(`(() => {\n  console.log('OK, GO!');\n  $('h1').html('HELLO WORLD!');\n})();`, -1);
+      let check = confirm('This will overwrite all fields. Are you sure?');
+      if (!check) return;
+
+      this.editorHTML.setValue(`<h1 class="display-1 fw-bold">TEST</h1>`, -1);
+      this.editorCSS.setValue(`h1 {\n  color: #dc3545;\n}`, -1);
+      this.editorJS.setValue(`(function() {\n  $('h1').html('HELLO WORLD!');\n})();`, -1);
 
     }
 
