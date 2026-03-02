@@ -182,18 +182,18 @@
 
     }
 
-    _loadExample() {
+    _example() {
 
       this.editorHTML.setValue(`<h1>TEST</h1>`);
       this.editorCSS.setValue(`body {\n  background: yellowgreen;\n}`);
-      this.editorJS.setValue(`(() => {\n  console.log('OK, GO!');\n  $('h1').html('HELLO WORLD!');\n  })();`);
+      this.editorJS.setValue(`(() => {\n  console.log('OK, GO!');\n  $('h1').html('HELLO WORLD!');\n})();`);
 
     }
 
     _bind() {
 
       if (this.elements.example) {
-        this.elements.example.addEventListener('click', e => this._loadExample());
+        this.elements.example.addEventListener('click', e => this._example());
       }
 
       if (this.elements.run) {
