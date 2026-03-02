@@ -1,5 +1,5 @@
 /*!
- * eocjsTestingGround v0.0.1
+ * eocjsObfuscator v0.0.1
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
