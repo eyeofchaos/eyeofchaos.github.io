@@ -204,12 +204,12 @@
 
     }
 
-    _load() {
-      console.log('TODO: LOAD');
-    }
-
     _save() {
       console.log('TODO: SAVE');
+    }
+
+    _load() {
+      console.log('TODO: LOAD');
     }
 
     _bind() {
@@ -222,12 +222,12 @@
         this.elements.example.addEventListener('click', e => this._write(this.examples.default));
       }
 
-      if (this.elements.load) {
-        this.elements.load.addEventListener('click', e => this._load());
-      }
-
       if (this.elements.save) {
         this.elements.save.addEventListener('click', e => this._save());
+      }
+
+      if (this.elements.load) {
+        this.elements.load.addEventListener('click', e => this._load());
       }
 
       if (this.elements.run) {
