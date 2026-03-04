@@ -42,6 +42,7 @@
         select:  document.querySelector('#select'),
         trash:   document.querySelector('#trash'),
         example: document.querySelector('#example'),
+        load:    document.querySelector('#load'),
         save:    document.querySelector('#save'),
         run:     document.querySelector('#run'),
         curtain: document.querySelector('#curtain'),
@@ -131,7 +132,7 @@
 
     }
 
-    _load(packets) {
+    _run(packets) {
 
       let output = document.querySelector('#output');
 
@@ -203,6 +204,10 @@
 
     }
 
+    _load() {
+      console.log('TODO: LOAD');
+    }
+
     _save() {
       console.log('TODO: SAVE');
     }
@@ -217,12 +222,16 @@
         this.elements.example.addEventListener('click', e => this._write(this.examples.default));
       }
 
+      if (this.elements.load) {
+        this.elements.load.addEventListener('click', e => this._load());
+      }
+
       if (this.elements.save) {
         this.elements.save.addEventListener('click', e => this._save());
       }
 
       if (this.elements.run) {
-        this.elements.run.addEventListener('click', e => this._load(this._start(e)));
+        this.elements.run.addEventListener('click', e => this._run(this._start(e)));
       }
 
     }
