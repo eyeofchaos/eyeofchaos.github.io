@@ -1,5 +1,5 @@
 /*!
- * eocjsTestingGround v0.1.3
+ * eocjsTestingGround v0.1.4
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -40,10 +40,18 @@
       this.settings   = extend({}, this.defaults, this.options);
       this.elements   = {
         select:  document.querySelector('#select'),
+        trash:   document.querySelector('#trash'),
         example: document.querySelector('#example'),
         run:     document.querySelector('#run'),
         curtain: document.querySelector('#curtain'),
         overlay: document.querySelectorAll('#html-overlay, #css-overlay, #js-overlay')
+      };
+      this.examples   =  {
+        default: {
+          html: `<h1 class="display-1 fw-bold">TEST</h1>`,
+          css:  `h1 {\n  color: #dc3545;\n}`,
+          js:   `(function() {\n  $('h1').html('HELLO WORLD!');\n})();`
+        }
       };
       this.libraries  = new Map();
       this.editorHTML = {};
@@ -182,21 +190,26 @@
 
     }
 
-    _example() {
+    _write(obj) {
 
       let check = confirm('This will overwrite all fields. Are you sure?');
       if (!check) return;
+      if (!obj) obj = {};
 
-      this.editorHTML.setValue(`<h1 class="display-1 fw-bold">TEST</h1>`, -1);
-      this.editorCSS.setValue(`h1 {\n  color: #dc3545;\n}`, -1);
-      this.editorJS.setValue(`(function() {\n  $('h1').html('HELLO WORLD!');\n})();`, -1);
+      this.editorHTML.setValue(obj?.html || '', -1);
+      this.editorCSS.setValue(obj?.css || '', -1);
+      this.editorJS.setValue(obj?.js || '', -1);
 
     }
 
     _bind() {
 
+      if (this.elements.trash) {
+        this.elements.trash.addEventListener('click', e => this._write());
+      }
+
       if (this.elements.example) {
-        this.elements.example.addEventListener('click', e => this._example());
+        this.elements.example.addEventListener('click', e => this._write(this.examples.default));
       }
 
       if (this.elements.run) {
