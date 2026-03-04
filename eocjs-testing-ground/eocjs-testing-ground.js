@@ -1,5 +1,5 @@
 /*!
- * eocjsTestingGround v0.1.4
+ * eocjsTestingGround v0.1.5
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -42,6 +42,7 @@
         select:  document.querySelector('#select'),
         trash:   document.querySelector('#trash'),
         example: document.querySelector('#example'),
+        save:    document.querySelector('#save'),
         run:     document.querySelector('#run'),
         curtain: document.querySelector('#curtain'),
         overlay: document.querySelectorAll('#html-overlay, #css-overlay, #js-overlay')
@@ -202,6 +203,10 @@
 
     }
 
+    _save() {
+      console.log('TODO: SAVE');
+    }
+
     _bind() {
 
       if (this.elements.trash) {
@@ -210,6 +215,10 @@
 
       if (this.elements.example) {
         this.elements.example.addEventListener('click', e => this._write(this.examples.default));
+      }
+
+      if (this.elements.save) {
+        this.elements.save.addEventListener('click', e => this._save());
       }
 
       if (this.elements.run) {
