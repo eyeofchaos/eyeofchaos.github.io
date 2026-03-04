@@ -1,5 +1,5 @@
 /*!
- * eocjsTestingGround v0.1.5
+ * eocjsTestingGround v0.1.6
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -31,6 +31,27 @@
 
   }
 
+  function utf8ToBase64(str) {
+
+    const encoder = new TextEncoder();
+    const data    = encoder.encode(str);
+    const binary  = String.fromCharCode.apply(null, data);
+
+    return btoa(binary);
+
+  }
+
+  function base64ToUtf8(b64) {
+
+    const binary  = atob(b64);
+    const bytes   = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i += 1) { bytes[i] = binary.charCodeAt(i); }
+    const decoder = new TextDecoder();
+
+    return decoder.decode(bytes);
+
+  }
+
   class Main {
 
     constructor(options) {
@@ -59,6 +80,7 @@
       this.editorHTML = {};
       this.editorCSS  = {};
       this.editorJS   = {};
+      this.storage    = 'eocjs_testing_ground';
 
     }
 
@@ -194,8 +216,7 @@
 
     _write(obj) {
 
-      let check = confirm('This will overwrite all fields. Are you sure?');
-      if (!check) return;
+      if (!confirm('This will overwrite all fields. Are you sure?')) return;
       if (!obj) obj = {};
 
       this.editorHTML.setValue(obj?.html || '', -1);
@@ -205,11 +226,31 @@
     }
 
     _save() {
-      console.log('TODO: SAVE');
+
+      const string = JSON.stringify({ 'version': 1,  html: utf8ToBase64(this.editorHTML.getValue()), css: utf8ToBase64(this.editorCSS.getValue()), js: utf8ToBase64(this.editorJS.getValue()) });
+      localStorage.setItem(this.storage, string);
+
     }
 
     _load() {
-      console.log('TODO: LOAD');
+
+      const string = localStorage.getItem(this.storage);
+
+      if (typeof string === 'string' && string && isJSON(string)) {
+
+        if (!confirm('This will overwrite all fields. Are you sure?')) return;
+        const obj = JSON.parse(string);
+
+        this.editorHTML.setValue((obj.html ? base64ToUtf8(obj.html) : ''), -1);
+        this.editorCSS.setValue((obj.css ? base64ToUtf8(obj.css) : ''), -1);
+        this.editorJS.setValue((obj.js ? base64ToUtf8(obj.js) : ''), -1);
+
+      } else {
+
+        alert('No valid save point found!');
+
+      }
+
     }
 
     _bind() {
