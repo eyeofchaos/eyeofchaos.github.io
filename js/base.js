@@ -31,7 +31,7 @@
       const parsed = this._isJSON(data) ? JSON.parse(data) : [];
       const output = this._getText(parsed);
       const styles = new CSSStyleSheet();
-      styles.replaceSync('p { margin: 0; text-align: center; color: var(--bs-orange); }');
+      styles.replaceSync('p { margin: 0; }');
       const shadowRoot = this.attachShadow({mode: 'open'});
       shadowRoot.adoptedStyleSheets.push(styles);
       shadowRoot.innerHTML = `<p>${output}</p>`;
