@@ -54,7 +54,7 @@
               </nav>
 
               <article class="mt-4 d-flex">
-                <simple-greeting style="color: var(--bs-orange);" data-content='[ { "time": 0, "text": "Good night!" }, { "time": 6, "text": "Good morning!" }, { "time": 12, "text": "Good afternoon!" }, { "time": 17, "text": "Good evening!" }, { "time": 23, "text": "Good night!" } ]'></simple-greeting>
+                <eocjs-greeting style="color: var(--bs-orange);" data-content='[ { "time": 0, "text": "Good night!" }, { "time": 6, "text": "Good morning!" }, { "time": 12, "text": "Good afternoon!" }, { "time": 17, "text": "Good evening!" }, { "time": 23, "text": "Good night!" } ]'></eocjs-greeting>
                 <span>&#8203;</span>
               </article>
 
@@ -66,8 +66,52 @@
   </div>
 </main>
 
-<script src="/js/bootstrap-5.3.8/bootstrap.bundle.min.js"></script>
-<script src="/js/base.js?v=202603262300"></script>
+<script>
+(function() {
+
+  class EocjsGreeting extends HTMLElement {
+
+    constructor() {
+      super();
+    }
+
+    _isJSON(str) {
+      try {
+        return (JSON.parse(str) && !!str);
+      } catch(e) {
+        return false;
+      }
+    }
+
+    _getText(arr) {
+      let result = 'Hello!';
+      if (Array.isArray(arr) && arr.length > 0) {
+        const date = new Date();
+        const hours = date.getHours();
+        const obj = arr.filter((obj) => hours >= obj.time);
+        const txt = obj[obj.length - 1]?.text;
+        if (typeof txt === 'string' && txt) result = txt;
+      }
+      return result;
+    }
+
+    connectedCallback() {
+      const data = this.getAttribute('data-content');
+      const parsed = this._isJSON(data) ? JSON.parse(data) : [];
+      const output = this._getText(parsed);
+      const styles = new CSSStyleSheet();
+      styles.replaceSync('p { margin: 0; }');
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.adoptedStyleSheets.push(styles);
+      shadowRoot.innerHTML = `<p>${output}</p>`;
+    }
+
+  }
+
+  customElements.define('eocjs-greeting', EocjsGreeting);
+
+})();
+</script>
 
 </body>
 </html>
