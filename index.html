@@ -69,59 +69,7 @@
 </main>
 
 <script>
-if (!customElements.get('simple-greeting')) {
-
-  class SimpleGreeting extends HTMLElement {
-
-    constructor() {
-      super();
-      this.output = 'Hello!';
-    }
-
-    _isJSON(str) {
-      try {
-        return (JSON.parse(str) && !!str);
-      } catch(e) {
-        return false;
-      }
-    }
-
-    _getText(arr) {
-
-      let result = '';
-
-      if (Array.isArray(arr) && arr.length > 0) {
-        const date = new Date();
-        const hours = date.getHours();
-        const obj = arr.sort((a, b) => a.time - b.time).filter(a => hours >= a.time);
-        const txt = obj[obj.length - 1]?.text;
-        if (typeof txt === 'string' && txt) result = txt;
-      }
-
-      return result;
-
-    }
-
-    connectedCallback() {
-
-      const data = this.getAttribute('data-content');
-      const parsed = this._isJSON(data) ? JSON.parse(data) : [];
-      this.output = this._getText(parsed) || this.output;
-
-      const styles = new CSSStyleSheet();
-      styles.replaceSync('p { margin: 0; }');
-
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.adoptedStyleSheets.push(styles);
-      shadowRoot.innerHTML = `<p>${this.output}</p>`;
-
-    }
-
-  }
-
-  customElements.define('simple-greeting', SimpleGreeting);
-
-}
+if(!customElements.get('simple-greeting')){class t extends HTMLElement{constructor(){super(),this.output='Hello!'}_isJSON(t){try{return JSON.parse(t)&&!!t}catch(t){return!1}}_getText(t){let e='';if(Array.isArray(t)&&t.length>0){const s=(new Date).getHours(),n=t.sort((t,e)=>t.time-e.time).filter(t=>s>=t.time),i=n[n.length-1]?.text;'string'==typeof i&&i&&(e=i)}return e}connectedCallback(){const t=this.getAttribute('data-content'),e=this._isJSON(t)?JSON.parse(t):[];this.output=this._getText(e)||this.output;const s=new CSSStyleSheet;s.replaceSync('p { margin: 0; }');const n=this.attachShadow({mode:'open'});n.adoptedStyleSheets.push(s),n.innerHTML=`<p>${this.output}</p>`}}customElements.define('simple-greeting',t)}
 </script>
 
 </body>
