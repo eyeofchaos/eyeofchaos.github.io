@@ -29,11 +29,11 @@
             <tbody>
               <tr>
                 <td style="width: 40%; min-width: 100px;">Time</td>
-                <td><eocjs-time></eocjs-time></td>
+                <td><local-time></local-time></td>
               </tr>
               <tr>
                 <td style="width: 40%; min-width: 100px;">User agent</td>
-                <td><eocjs-user-agent></eocjs-user-agent></td>
+                <td><user-agent></user-agent></td>
               </tr>
             </tbody>
           </table>
@@ -45,40 +45,8 @@
 </main>
 
 <script>
-(function() {
-
-  class EocjsTime extends HTMLElement {
-
-    constructor() {
-      super();
-    }
-
-    connectedCallback() {
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      const obj = new Date();
-      shadowRoot.innerHTML = obj.toLocaleString();
-    }
-
-  }
-
-  customElements.define('eocjs-time', EocjsTime);
-
-  class EocjsUserAgent extends HTMLElement {
-
-    constructor() {
-      super();
-    }
-
-    connectedCallback() {
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.innerHTML = navigator.userAgent;
-    }
-
-  }
-
-  customElements.define('eocjs-user-agent', EocjsUserAgent);
-
-})();
+if(!customElements.get('local-time')){class e extends HTMLElement{constructor(){super()}connectedCallback(){const e=this.attachShadow({mode:'open'}),t=new Date;e.innerHTML=t.toLocaleString()}}customElements.define('local-time',e)}
+if(!customElements.get('user-agent')){class e extends HTMLElement{constructor(){super()}connectedCallback(){this.attachShadow({mode:'open'}).innerHTML=navigator.userAgent}}customElements.define('user-agent',e)}
 </script>
 
 </body>
