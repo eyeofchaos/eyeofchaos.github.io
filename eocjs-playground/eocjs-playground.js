@@ -229,6 +229,7 @@
     _save() {
 
       const string = JSON.stringify({ 'version': 1,  html: utf8ToBase64(this.editorHTML.getValue()), css: utf8ToBase64(this.editorCSS.getValue()), js: utf8ToBase64(this.editorJS.getValue()) });
+      localStorage.removeItem(this.storageOld);
       localStorage.setItem(this.storage, string);
 
     }
