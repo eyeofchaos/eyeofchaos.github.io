@@ -1,5 +1,5 @@
 /*!
- * eocjsTestingGround v0.1.6
+ * eocjsPlayground v0.1.7
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -80,7 +80,8 @@
       this.editorHTML = {};
       this.editorCSS  = {};
       this.editorJS   = {};
-      this.storage    = 'eocjs_testing_ground';
+      this.storage    = 'eocjs_playground';
+      this.storageOld = 'eocjs_testing_ground';
 
     }
 
@@ -234,7 +235,7 @@
 
     _load() {
 
-      const string = localStorage.getItem(this.storage);
+      const string = localStorage.getItem(this.storage) ?? localStorage.getItem(this.storageOld);
 
       if (typeof string === 'string' && string && isJSON(string)) {
 
