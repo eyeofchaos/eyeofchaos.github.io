@@ -1,5 +1,5 @@
 /*!
- * eocjsPlayground v0.1.8
+ * eocjsPlayground v0.1.9
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
