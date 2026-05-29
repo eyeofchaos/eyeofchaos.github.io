@@ -61,9 +61,8 @@
       this.settings   = extend({}, this.defaults, this.options);
       this.elements   = {
         select:  document.querySelector('#select'),
-        trash:   document.querySelector('#trash'),
-        load:    document.querySelector('#load'),
         save:    document.querySelector('#save'),
+        load:    document.querySelector('#load'),
         run:     document.querySelector('#run'),
         curtain: document.querySelector('#curtain'),
         overlay: document.querySelectorAll('#html-overlay, #css-overlay, #js-overlay')
@@ -246,10 +245,6 @@
     }
 
     _bind() {
-
-      if (this.elements.trash) {
-        this.elements.trash.addEventListener('click', e => this._write());
-      }
 
       if (this.elements.save) {
         this.elements.save.addEventListener('click', e => this._save());
