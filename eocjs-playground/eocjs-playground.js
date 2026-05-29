@@ -1,5 +1,5 @@
 /*!
- * eocjsPlayground v0.1.7
+ * eocjsPlayground v0.1.8
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -62,26 +62,17 @@
       this.elements   = {
         select:  document.querySelector('#select'),
         trash:   document.querySelector('#trash'),
-        example: document.querySelector('#example'),
         load:    document.querySelector('#load'),
         save:    document.querySelector('#save'),
         run:     document.querySelector('#run'),
         curtain: document.querySelector('#curtain'),
         overlay: document.querySelectorAll('#html-overlay, #css-overlay, #js-overlay')
       };
-      this.examples   =  {
-        default: {
-          html: `<h1 class="display-1 fw-bold">TEST</h1>`,
-          css:  `h1 {\n  color: #dc3545;\n}`,
-          js:   `(function() {\n  $('h1').html('HELLO WORLD!');\n})();`
-        }
-      };
       this.libraries  = new Map();
       this.editorHTML = {};
       this.editorCSS  = {};
       this.editorJS   = {};
       this.storage    = 'eocjs_playground';
-      this.storageOld = 'eocjs_testing_ground';
 
     }
 
@@ -229,14 +220,13 @@
     _save() {
 
       const string = JSON.stringify({ 'version': 1,  html: utf8ToBase64(this.editorHTML.getValue()), css: utf8ToBase64(this.editorCSS.getValue()), js: utf8ToBase64(this.editorJS.getValue()) });
-      localStorage.removeItem(this.storageOld);
       localStorage.setItem(this.storage, string);
 
     }
 
     _load() {
 
-      const string = localStorage.getItem(this.storage) ?? localStorage.getItem(this.storageOld);
+      const string = localStorage.getItem(this.storage);
 
       if (typeof string === 'string' && string && isJSON(string)) {
 
@@ -259,10 +249,6 @@
 
       if (this.elements.trash) {
         this.elements.trash.addEventListener('click', e => this._write());
-      }
-
-      if (this.elements.example) {
-        this.elements.example.addEventListener('click', e => this._write(this.examples.default));
       }
 
       if (this.elements.save) {
