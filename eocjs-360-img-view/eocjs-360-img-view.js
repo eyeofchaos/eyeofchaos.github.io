@@ -1,5 +1,5 @@
 /*!
- * eocjs360ImgView v0.1.1
+ * eocjs360ImgView v0.1.2
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -36,22 +36,9 @@ class Eocjs360ImgView {
       intro:     true,  // first round of images
       progress:  true   // show progress bar
     };
-    this.settings = extend({}, this.defaults, this.options);
-
+    this.settings = { ...this.defaults, ...this.options };
     this.canvas = document.querySelector(this.settings.canvas);
     this.context = document.querySelector(this.settings.canvas).getContext('2d');
-
-    // Helper function to extend object
-    function extend(obj, ...rest) {
-      obj = obj || {};
-      for (let i = 0; i < rest.length; i += 1) {
-        if (!rest[i]) continue;
-        for (let key in rest[i]) {
-          if (rest[i].hasOwnProperty(key)) obj[key] = rest[i][key];
-        }
-      }
-      return obj;
-    }
 
   }
 
