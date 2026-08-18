@@ -1,56 +1,10 @@
 /*!
- * eocjsPlayground v0.1.9
+ * eocjsPlayground v0.1.10
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
 
 (function() {
-
-  function extend(obj, ...rest) {
-
-    obj = obj || {};
-
-    for (let i = 0; i < rest.length; i += 1) {
-      if (!rest[i]) continue;
-      for (let key in rest[i]) {
-        if (Object.hasOwn(rest[i], key)) obj[key] = rest[i][key];
-      }
-    }
-
-    return obj;
-
-  }
-
-  function isJSON(str) {
-
-    try {
-      return (JSON.parse(str) && !!str);
-    } catch(e) {
-      return false;
-    }
-
-  }
-
-  function utf8ToBase64(str) {
-
-    const encoder = new TextEncoder();
-    const data    = encoder.encode(str);
-    const binary  = String.fromCharCode.apply(null, data);
-
-    return btoa(binary);
-
-  }
-
-  function base64ToUtf8(b64) {
-
-    const binary  = atob(b64);
-    const bytes   = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i += 1) { bytes[i] = binary.charCodeAt(i); }
-    const decoder = new TextDecoder();
-
-    return decoder.decode(bytes);
-
-  }
 
   class Main {
 
@@ -58,7 +12,7 @@
 
       this.options    = options;
       this.defaults   = {};
-      this.settings   = extend({}, this.defaults, this.options);
+      this.settings   = { ...this.defaults, ...this.options };
       this.elements   = {
         select:  document.querySelector('#select'),
         save:    document.querySelector('#save'),
@@ -79,6 +33,37 @@
       this._editor();
       this._libraries();
       this._bind();
+    }
+
+    _isJSON(str) {
+
+      try {
+        return (JSON.parse(str) && !!str);
+      } catch(e) {
+        return false;
+      }
+
+    }
+
+    _utf8ToBase64(str) {
+
+      const encoder = new TextEncoder();
+      const data    = encoder.encode(str);
+      const binary  = String.fromCharCode.apply(null, data);
+
+      return btoa(binary);
+
+    }
+
+    _base64ToUtf8(b64) {
+
+      const binary  = atob(b64);
+      const bytes   = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i += 1) { bytes[i] = binary.charCodeAt(i); }
+      const decoder = new TextDecoder();
+
+      return decoder.decode(bytes);
+
     }
 
     _editor() {
@@ -112,7 +97,7 @@
 
       if (this.elements.select) {
         let str = this.elements.select.getAttribute('data-eocjs-packets');
-        if (isJSON(str)) {
+        if (this._isJSON(str)) {
           let obj = JSON.parse(str);
           for (let prop in obj) {
             if (Object.hasOwn(obj, prop)) this.libraries.set(prop, obj[prop]);
@@ -169,8 +154,6 @@
           }
         }
 
-        // Additions
-
         htmlAdd += this.editorHTML.getValue() || '';
         cssAdd  += `<style>${this.editorCSS.getValue() || ''}</style>`;
         jsAdd   += `<script>${this.editorJS.getValue() || ''}</script>`;
@@ -218,7 +201,7 @@
 
     _save() {
 
-      const string = JSON.stringify({ 'version': 1,  html: utf8ToBase64(this.editorHTML.getValue()), css: utf8ToBase64(this.editorCSS.getValue()), js: utf8ToBase64(this.editorJS.getValue()) });
+      const string = JSON.stringify({ 'version': 1,  html: this._utf8ToBase64(this.editorHTML.getValue()), css: this._utf8ToBase64(this.editorCSS.getValue()), js: this._utf8ToBase64(this.editorJS.getValue()) });
       localStorage.setItem(this.storage, string);
 
     }
@@ -227,14 +210,14 @@
 
       const string = localStorage.getItem(this.storage);
 
-      if (typeof string === 'string' && string && isJSON(string)) {
+      if (typeof string === 'string' && string && this._isJSON(string)) {
 
         if (!confirm('This will overwrite all fields. Are you sure?')) return;
         const obj = JSON.parse(string);
 
-        this.editorHTML.setValue((obj.html ? base64ToUtf8(obj.html) : ''), -1);
-        this.editorCSS.setValue((obj.css ? base64ToUtf8(obj.css) : ''), -1);
-        this.editorJS.setValue((obj.js ? base64ToUtf8(obj.js) : ''), -1);
+        this.editorHTML.setValue((obj.html ? this._base64ToUtf8(obj.html) : ''), -1);
+        this.editorCSS.setValue((obj.css ? this._base64ToUtf8(obj.css) : ''), -1);
+        this.editorJS.setValue((obj.js ? this._base64ToUtf8(obj.js) : ''), -1);
 
       } else {
 
