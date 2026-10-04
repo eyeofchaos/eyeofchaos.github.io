@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eocjsQRCodeGenerator</title>
+<link rel="icon" href="/images/favicon.svg?v=1.0" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=1.0">
+<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">
+</head>
+<body>
+
+<main>
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <h1 class="mb-0 text-center">eocjsQRCodeGenerator</h1>
+          <p class="mb-5 text-center">Based on QRCode.js by davidshimjs</p>
+
+          <div class="mb-3 d-flex justify-content-center">
+            <textarea class="form-control eocjs-jtr-input" rows="3" style="max-width: 640px;">https://example.com</textarea>
+          </div>
+
+          <div class="mb-5 d-flex justify-content-center">
+            <button type="button" class="btn btn-primary eocjs-jtr-button" style="min-width: 240px;">Generate</button>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <div class="eocjs-jtr-output"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/eocjs-qr-code-generator/qrcode-1.0.0.min.js"></script>
+<script src="/eocjs-qr-code-generator/eocjs-qr-code-generator.js"></script>
+
+</body>
+</html>
