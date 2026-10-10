@@ -44,10 +44,8 @@
   </section>
 </main>
 
-<script>
-if(!customElements.get('local-time')){class e extends HTMLElement{constructor(){super()}connectedCallback(){const e=this.attachShadow({mode:'open'}),t=new Date;e.innerHTML=t.toLocaleString()}}customElements.define('local-time',e)}
-if(!customElements.get('user-agent')){class e extends HTMLElement{constructor(){super()}connectedCallback(){this.attachShadow({mode:'open'}).innerHTML=navigator.userAgent}}customElements.define('user-agent',e)}
-</script>
+<script src="/web-components/local-time.js"></script>
+<script src="/web-components/user-agent.js"></script>
 
 </body>
 </html>
