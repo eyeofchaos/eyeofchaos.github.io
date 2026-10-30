@@ -170,7 +170,7 @@
 
         let source = `
           <!DOCTYPE html>
-          <html lang="de">
+          <html lang="de" data-bs-theme="light">
           <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
