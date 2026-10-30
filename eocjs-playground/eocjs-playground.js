@@ -159,7 +159,7 @@
               for (const el of item.css) css += `<link rel="stylesheet" href="${el}">`;
             }
             if (Object.hasOwn(item, 'js') && Array.isArray(item.js)) {
-              for (const el of item.js) js += `<script src="${el}${jsType}"></script>`;
+              for (const el of item.js) js += `<script src="${el}${jsProp}"></script>`;
             }
           }
         }
