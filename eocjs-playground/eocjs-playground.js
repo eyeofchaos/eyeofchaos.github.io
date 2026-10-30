@@ -1,5 +1,5 @@
 /*!
- * eocjsPlayground v0.1.10
+ * eocjsPlayground v0.1.11
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -142,6 +142,16 @@
         let cssAdd  = '';
         let js      = '';
         let jsAdd   = '';
+        let jsProp  = '';
+
+        for (const item of packets) {
+          if (typeof item === 'object' && item) {
+            if (Object.hasOwn(item, 'type') && item.type === 'module') {
+              jsProp += ' type="module"';
+              break;
+            }
+          }
+        }
 
         for (const item of packets) {
           if (typeof item === 'object' && item) {
@@ -149,7 +159,7 @@
               for (const el of item.css) css += `<link rel="stylesheet" href="${el}">`;
             }
             if (Object.hasOwn(item, 'js') && Array.isArray(item.js)) {
-              for (const el of item.js) js += `<script src="${el}"></script>`;
+              for (const el of item.js) js += `<script src="${el}${jsType}"></script>`;
             }
           }
         }
