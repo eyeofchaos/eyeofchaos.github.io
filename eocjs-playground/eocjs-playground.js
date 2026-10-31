@@ -1,5 +1,5 @@
 /*!
- * eocjsPlayground v0.1.12
+ * eocjsPlayground v0.1.13
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -21,7 +21,6 @@
         curtain: document.querySelector('#curtain'),
         overlay: document.querySelectorAll('#html-overlay, #css-overlay, #js-overlay')
       };
-      this.libraries  = new Map();
       this.editorHTML = {};
       this.editorCSS  = {};
       this.editorJS   = {};
@@ -31,7 +30,6 @@
 
     init() {
       this._editor();
-      this._libraries();
       this._bind();
     }
 
@@ -93,48 +91,14 @@
 
     }
 
-    _libraries() {
+    _run() {
 
-      if (this.elements.select) {
-        let str = this.elements.select.getAttribute('data-eocjs-packets');
-        if (this._isJSON(str)) {
-          let obj = JSON.parse(str);
-          for (let prop in obj) {
-            if (Object.hasOwn(obj, prop)) this.libraries.set(prop, obj[prop]);
-          }
-        }
-      }
-
-    }
-
-    _start() {
-
-      const result = [];
       const select = document.querySelector('#select');
-
-      if (select) {
-
-        const val = select.value;
-        const arr = val ? val.split('|') : [];
-
-        for (const el of arr) {
-          if (el) {
-            const v = this.libraries.get(el);
-            if (v && typeof v === 'object') result.push(v);
-          }
-        }
-
-      }
-
-      return result;
-
-    }
-
-    _run(packets) {
+      const packets = select ? select.value : '';
 
       let output = document.querySelector('#output');
 
-      if (output && Array.isArray(packets)) {
+      if (packets) {
 
         let html    = '';
         let htmlAdd = '';
@@ -142,31 +106,32 @@
         let cssAdd  = '';
         let js      = '';
         let jsAdd   = '';
-        let jsProp  = '';
-
-        for (const item of packets) {
-          if (typeof item === 'object' && item) {
-            if (Object.hasOwn(item, 'type') && item.type === 'module') {
-              jsProp += ' type="module"';
-              break;
-            }
-          }
-        }
-
-        for (const item of packets) {
-          if (typeof item === 'object' && item) {
-            if (Object.hasOwn(item, 'css') && Array.isArray(item.css)) {
-              for (const el of item.css) css += `<link rel="stylesheet" href="${el}">`;
-            }
-            if (Object.hasOwn(item, 'js') && Array.isArray(item.js)) {
-              for (const el of item.js) js += `<script src="${el}"${jsProp}></script>`;
-            }
-          }
-        }
 
         htmlAdd += this.editorHTML.getValue() || '';
-        cssAdd  += `<style>${this.editorCSS.getValue() || ''}</style>`;
-        jsAdd   += `<script>${this.editorJS.getValue() || ''}</script>`;
+
+        if (packets === 'jquery@3.5.1|bootstrap@4.5.3') {
+
+          css    += `<link rel="stylesheet" href="/css/bootstrap-4.5.3/bootstrap.min.css">`;
+          cssAdd += `<style>${this.editorCSS.getValue() || ''}</style>`;
+          js     += `<script src="/js/bootstrap-4.5.3/bootstrap.bundle.min.js"></script>`;
+          jsAdd  += `<script>${this.editorJS.getValue() || ''}</script>`;
+
+        } else if (packets === 'jquery@3.7.1|bootstrap@5.3.8') {
+
+          css    += `<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">`;
+          cssAdd += `<style>${this.editorCSS.getValue() || ''}</style>`;
+          js     += `<script src="/js/bootstrap-5.3.8/bootstrap.bundle.min.js"></script>`;
+          jsAdd  += `<script>${this.editorJS.getValue() || ''}</script>`;
+
+        } else if (packets === 'bootstrap@6.0.0-alpha.1') {
+
+          css    += `<link rel="stylesheet" href="/css/bootstrap-6.0.0-alpha.1/bootstrap.min.css">`;
+          cssAdd += `<style>${this.editorCSS.getValue() || ''}</style>`;
+          js     += `<script type="importmap">{ "imports": { "bootstrap": "/js/bootstrap-6.0.0-alpha.1/bootstrap.bundle.min.js" } }</script>
+                     <script type="module">import * as bootstrap from 'bootstrap'; window.bootstrap = bootstrap;</script>`;
+          jsAdd  += `<script type="module">${this.editorJS.getValue() || ''}</script>`;
+
+        }
 
         let source = `
           <!DOCTYPE html>
@@ -178,7 +143,8 @@
           ${css}${cssAdd}
           </head>
           <body>
-          ${html}${htmlAdd}${js}${jsAdd}
+          ${html}${htmlAdd}
+          ${js}${jsAdd}
           </body>
           </html>
         `;
@@ -248,7 +214,7 @@
       }
 
       if (this.elements.run) {
-        this.elements.run.addEventListener('click', e => this._run(this._start(e)));
+        this.elements.run.addEventListener('click', e => this._run());
       }
 
     }
