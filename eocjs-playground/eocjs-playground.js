@@ -1,5 +1,5 @@
 /*!
- * eocjsPlayground v0.1.13
+ * eocjsPlayground v0.1.14
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -100,6 +100,7 @@
 
       if (packets) {
 
+        let preload = '';
         let html    = '';
         let htmlAdd = '';
         let css     = '';
@@ -125,11 +126,11 @@
 
         } else if (packets === 'bootstrap@6.0.0-alpha.1') {
 
-          css    += `<link rel="stylesheet" href="/css/bootstrap-6.0.0-alpha.1/bootstrap.min.css">`;
-          cssAdd += `<style>${this.editorCSS.getValue() || ''}</style>`;
-          js     += `<script type="importmap">{ "imports": { "bootstrap": "/js/bootstrap-6.0.0-alpha.1/bootstrap.bundle.min.js" } }</script>
-                     <script type="module">import * as bootstrap from 'bootstrap'; window.bootstrap = bootstrap;</script>`;
-          jsAdd  += `<script type="module">${this.editorJS.getValue() || ''}</script>`;
+          preload += `<link rel="modulepreload" href="/js/bootstrap-6.0.0-alpha.1/bootstrap.bundle.min.js">`;
+          css     += `<link rel="stylesheet" href="/css/bootstrap-6.0.0-alpha.1/bootstrap.min.css">`;
+          cssAdd  += `<style>${this.editorCSS.getValue() || ''}</style>`;
+          js      += `<script type="module" src="/js/bootstrap-6.0.0-alpha.1/bootstrap.bundle.min.js"></script>`;
+          jsAdd   += `<script type="module">${this.editorJS.getValue() || ''}</script>`;
 
         }
 
@@ -140,6 +141,7 @@
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>Output</title>
+          ${preload}
           ${css}${cssAdd}
           </head>
           <body>
