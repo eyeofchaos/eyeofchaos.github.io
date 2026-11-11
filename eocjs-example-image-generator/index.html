@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example Image Generator</title>
+<link rel="icon" href="/images/favicon.svg?v=1.0" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=1.0">
+<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">
+<link rel="stylesheet" href="/fonts/fontawesome-6.7.2/css/all.min.css">
+</head>
+<body>
+
+<main>
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <h1 class="mb-5 text-center">Example Image Generator</h1>
+
+          <div class="row justify-content-center">
+            <div class="col-auto mb-4">
+              <label class="form-label">Font Awesome (CSS Classes)</label>
+              <input type="text" value="fa-solid fa-rocket" class="form-control eocjs-xcr-input-icon" style="width: 320px;">
+            </div>
+            <div class="col-auto mb-4">
+              <label class="form-label">Color (HEX)</label>
+              <input type="text" value="#FF0088" class="form-control eocjs-xcr-input-color" style="width: 320px;">
+            </div>
+          </div>
+
+          <div class="d-flex flex-column align-items-center">
+            <button type="button" class="btn btn-primary mb-3 eocjs-xcr-button" style="min-width: 256px;">Generate</button>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="my-3" style="height: 1.5em;"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" fill="currentColor"/></svg>
+            <canvas class="canvas d-block" width="1000" height="1000" style="background: rgba(0, 0, 0, 0.25);"></canvas>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
