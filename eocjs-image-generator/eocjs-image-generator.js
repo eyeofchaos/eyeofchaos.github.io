@@ -33,7 +33,7 @@
 
       let icon = document.createElement('i');
       icon.classList.add( ...iconC );
-      icon.setAttribute('style', 'font-size: 400px;');
+      icon.setAttribute('style', 'font-size: 576px;');
 
       document.body.appendChild(icon);
 
@@ -47,14 +47,14 @@
 
       this.context.textAlign = 'center';
 
-      this.context.clearRect(0, 0, 1000, 1000);
+      this.context.clearRect(0, 0, 1024, 1024);
       this.context.fillStyle = '#ffffff';
-      this.context.fillRect(0, 0, 1000, 1000);
+      this.context.fillRect(0, 0, 1024, 1024);
       this.context.fillStyle = colorC;
 
       document.fonts.ready.then(() => {
         this.context.font = font;
-        this.context.fillText(content, 500, 650);
+        this.context.fillText(content, 512, 728);
         document.body.removeChild(icon);
       });
 
