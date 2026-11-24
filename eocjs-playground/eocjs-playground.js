@@ -1,5 +1,5 @@
 /*!
- * eocjsPlayground v0.1.16
+ * eocjsPlayground v0.1.17
  * Copyright (c) 2026 Dieter Schmitt
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
@@ -117,19 +117,19 @@
           js     += `<script src="/js/jquery-3.5.1.min.js"></script><script src="/js/bootstrap-4.5.3/bootstrap.bundle.min.js"></script>`;
           jsAdd  += `<script>${this.editorJS.getValue() || ''}</script>`;
 
-        } else if (packets === 'jquery@3.7.1|bootstrap@5.3.8') {
+        } else if (packets === 'jquery@3.8.0|bootstrap@5.3.9') {
 
-          css    += `<link rel="stylesheet" href="/css/bootstrap-5.3.8/bootstrap.min.css">`;
+          css    += `<link rel="stylesheet" href="/css/bootstrap-5.3.9/bootstrap.min.css">`;
           cssAdd += `<style>${this.editorCSS.getValue() || ''}</style>`;
-          js     += `<script src="/js/jquery-3.7.1.min.js"></script><script src="/js/bootstrap-5.3.8/bootstrap.bundle.min.js"></script>`;
+          js     += `<script src="/js/jquery-3.8.0.min.js"></script><script src="/js/bootstrap-5.3.9/bootstrap.bundle.min.js"></script>`;
           jsAdd  += `<script>${this.editorJS.getValue() || ''}</script>`;
 
-        } else if (packets === 'jquery@4.1.0|bootstrap@6.0.0-alpha.1') {
+        } else if (packets === 'jquery@4.1.0|bootstrap@6.0.0-alpha.2') {
 
-          preload += `<link rel="modulepreload" href="/js/jquery-4.1.0.min.js"><link rel="modulepreload" href="/js/bootstrap-6.0.0-alpha.1/bootstrap.bundle.min.js">`;
-          css     += `<link rel="stylesheet" href="/css/bootstrap-6.0.0-alpha.1/bootstrap.min.css">`;
+          preload += `<link rel="modulepreload" href="/js/jquery-4.1.0.min.js"><link rel="modulepreload" href="/js/bootstrap-6.0.0-alpha.2/bootstrap.bundle.min.js">`;
+          css     += `<link rel="stylesheet" href="/css/bootstrap-6.0.0-alpha.2/bootstrap.min.css">`;
           cssAdd  += `<style>${this.editorCSS.getValue() || ''}</style>`;
-          js      += `<script type="module" src="/js/jquery-4.1.0.min.js"></script><script type="module" src="/js/bootstrap-6.0.0-alpha.1/bootstrap.bundle.min.js"></script>`;
+          js      += `<script type="module" src="/js/jquery-4.1.0.min.js"></script><script type="module" src="/js/bootstrap-6.0.0-alpha.2/bootstrap.bundle.min.js"></script>`;
           jsAdd   += `<script type="module">${this.editorJS.getValue() || ''}</script>`;
 
         }
